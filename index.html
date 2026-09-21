@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profolio — Portfolio & Resume Builder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">P</span> Profolio</div>
+      <nav>
+        <button class="nav-btn active" data-view="portfolio">Portfolio</button>
+        <button class="nav-btn" data-view="resume">Resume</button>
+        <button class="nav-btn" data-view="ats">ATS Check</button>
+      </nav>
+      <div class="top-actions">
+        <span class="privacy">🔒 Private workspace</span>
+        <button class="ghost" id="clearBtn">Clear</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="panel editor-panel">
+        <div class="panel-head">
+          <div>
+            <span class="eyebrow">BUILD YOUR PROFILE</span>
+            <h1>Tell us about yourself</h1>
+            <p>Enter your details once. Use them for both your portfolio and resume.</p>
+          </div>
+        </div>
+
+        <div class="progress"><span id="progressBar"></span></div>
+
+        <div class="form-section">
+          <div class="section-title">👤 Personal information</div>
+          <div class="grid two">
+            <label>Full name<input id="name" placeholder="e.g. Priya Sharma"></label>
+            <label>Professional title<input id="role" placeholder="e.g. AI Engineer"></label>
+          </div>
+          <div class="grid two">
+            <label>Location<input id="location" placeholder="e.g. Hyderabad, India"></label>
+            <label>Email<input id="email" type="email" placeholder="you@example.com"></label>
+          </div>
+          <label>Profile photo URL <input id="photo" placeholder="https://..."></label>
+          <label>About you<textarea id="about" rows="4" placeholder="Write a short introduction about yourself..."></textarea></label>
+        </div>
+
+        <div class="form-section">
+          <div class="section-title">🛠 Skills</div>
+          <label>Skills <input id="skills" placeholder="Python, AI, Machine Learning, Canva, Communication"></label>
+        </div>
+
+        <div class="form-section">
+          <div class="section-title">🎓 Education</div>
+          <div class="grid two">
+            <label>Degree<input id="degree" placeholder="B.Tech in CSE (AI)"></label>
+            <label>College / University<input id="college" placeholder="Your college"></label>
+          </div>
+          <div class="grid two">
+            <label>Year<input id="year" placeholder="2024 – 2028"></label>
+            <label>CGPA / Score<input id="score" placeholder="8.5 CGPA"></label>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="section-title">🚀 Projects</div>
+          <label>Project name<input id="projectName" placeholder="AI Spam Detection"></label>
+          <label>Project description<textarea id="projectDesc" rows="3" placeholder="What did you build? What technologies did you use?"></textarea></label>
+        </div>
+
+        <div class="form-section">
+          <div class="section-title">💼 Experience</div>
+          <label>Experience / internship<textarea id="experience" rows="3" placeholder="Role, company, dates and key responsibilities..."></textarea></label>
+        </div>
+
+        <div class="form-section">
+          <div class="section-title">🔗 Links</div>
+          <div class="grid two">
+            <label>LinkedIn<input id="linkedin" placeholder="https://linkedin.com/in/..."></label>
+            <label>GitHub<input id="github" placeholder="https://github.com/..."></label>
+          </div>
+        </div>
+
+        <div class="form-section template-section">
+          <div class="section-title">🎨 Portfolio style</div>
+          <div class="templates">
+            <button class="template active" data-template="modern"><div class="mini modern-mini"></div><span>Modern</span></button>
+            <button class="template" data-template="minimal"><div class="mini minimal-mini"></div><span>Minimal</span></button>
+            <button class="template" data-template="creative"><div class="mini creative-mini"></div><span>Creative</span></button>
+          </div>
+        </div>
+
+        <div class="ai-box">
+          <div class="ai-icon">✦</div>
+          <div class="ai-copy">
+            <strong>AI Portfolio Assistant</strong>
+            <span>Improve your content with simple instructions.</span>
+          </div>
+          <button id="improveBtn" class="primary small">Improve About</button>
+        </div>
+      </section>
+
+      <section class="panel preview-panel">
+        <div class="preview-head">
+          <div>
+            <span class="eyebrow">LIVE PREVIEW</span>
+            <h2 id="previewTitle">Your Portfolio</h2>
+          </div>
+          <div class="preview-actions">
+            <button class="icon-btn active">Desktop</button>
+            <button class="icon-btn">Mobile</button>
+          </div>
+        </div>
+
+        <div id="portfolioView" class="preview-wrap">
+          <article id="portfolioCard" class="portfolio-card modern">
+            <div class="hero">
+              <div>
+                <span class="pill" id="previewRole">YOUR PROFESSION</span>
+                <h3 id="previewName">Your Name</h3>
+                <p id="previewAbout">Your introduction will appear here as you fill in the form.</p>
+                <div class="links">
+                  <a id="previewLinkedin" href="#" target="_blank">LinkedIn ↗</a>
+                  <a id="previewGithub" href="#" target="_blank">GitHub ↗</a>
+                </div>
+              </div>
+              <img id="previewPhoto" class="avatar" src="https://placehold.co/160x160?text=You" alt="Profile">
+            </div>
+            <div class="preview-grid">
+              <div class="preview-block"><span>SKILLS</span><div id="previewSkills" class="chips"><i>Skills appear here</i></div></div>
+              <div class="preview-block"><span>EDUCATION</span><h4 id="previewDegree">Your degree</h4><p id="previewCollege">Your college</p><small id="previewYear"></small></div>
+              <div class="preview-block"><span>PROJECT</span><h4 id="previewProject">Your project</h4><p id="previewProjectDesc">Project description</p></div>
+              <div class="preview-block"><span>EXPERIENCE</span><p id="previewExperience">Your experience will appear here.</p></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="bottom-actions">
+          <button class="secondary" id="resumeBtn">📄 Build Resume</button>
+          <button class="secondary" id="printBtn">↓ Download / Print</button>
+        </div>
+
+        <div id="resumeView" class="resume-view hidden">
+          <div class="resume-toolbar">
+            <div><span class="eyebrow">RESUME BUILDER</span><h2>Professional Resume</h2></div>
+            <button class="primary" id="resumePrint">Download PDF</button>
+          </div>
+          <div class="resume-card">
+            <h1 id="resumeName">Your Name</h1>
+            <div id="resumeRole" class="resume-role">Your Profession</div>
+            <p id="resumeContact">Location · Email</p>
+            <hr>
+            <h3>SUMMARY</h3><p id="resumeAbout">Your summary</p>
+            <h3>SKILLS</h3><p id="resumeSkills">Your skills</p>
+            <h3>EXPERIENCE</h3><p id="resumeExperience">Your experience</p>
+            <h3>PROJECTS</h3><h4 id="resumeProject">Your project</h4><p id="resumeProjectDesc">Project description</p>
+            <h3>EDUCATION</h3><p id="resumeEducation">Your education</p>
+          </div>
+        </div>
+
+        <div id="atsView" class="ats-view hidden">
+          <div class="resume-toolbar"><div><span class="eyebrow">ATS CHECK</span><h2>Resume readiness</h2></div></div>
+          <div class="score-card"><div class="score" id="atsScore">72</div><div><h3 id="atsLabel">Good foundation</h3><p>Complete more sections and use role-specific keywords to improve your resume.</p></div></div>
+          <div id="atsTips" class="tips"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer>🔒 Your workspace is designed to stay private. Clear the workspace anytime.</footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
